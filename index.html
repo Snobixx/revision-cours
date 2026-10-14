@@ -2,10 +2,2401 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=hg.html">
-  <title>Redirection...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Révolution & Empire (1789-1815) - Entraînement au Contrôle</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #60a5fa;
+      --secondary: #d97706;
+      --accent: #dc2626;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --warning: #ca8a04;
+      --warning-bg: #fef9c3;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --bg: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --gold: #f59e0b;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      --font-main: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.08) 0%, transparent 60%);
+      background-attachment: fixed;
+    }
+
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 1.5rem;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .flag-badge {
+      display: flex;
+      width: 32px;
+      height: 22px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .flag-blue { flex: 1; background: #002654; }
+    .flag-white { flex: 1; background: #ffffff; }
+    .flag-red { flex: 1; background: #ce1126; }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #f3f4f6, #f87171);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.2rem;
+    }
+
+    .section-view {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .section-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Alert Banner */
+    .hero-alert {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(245, 158, 11, 0.15));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-alert h2 {
+      font-size: 1.2rem;
+      color: #fbbf24;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-alert p {
+      color: #d1d5db;
+      font-size: 0.92rem;
+    }
+
+    .stat-pills {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+    .stat-pill .num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+    .stat-pill .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cards & Containers */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #e5e7eb;
+    }
+
+    /* Correction Alert Grid */
+    .corrections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .correction-box {
+      background: rgba(15, 23, 42, 0.7);
+      border-left: 4px solid var(--danger);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .correction-box.success {
+      border-left-color: var(--success);
+    }
+
+    .correction-box .bad {
+      color: #f87171;
+      font-weight: 600;
+      text-decoration: line-through;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    .correction-box .good {
+      color: #4ade80;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .correction-box .note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* Timeline Section */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #3b82f6, #f59e0b, #ef4444);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3b82f6;
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+    }
+
+    .timeline-item.period-revolution::before { background: #3b82f6; }
+    .timeline-item.period-republic::before { background: #10b981; }
+    .timeline-item.period-terror::before { background: #ef4444; }
+    .timeline-item.period-empire::before { background: #f59e0b; }
+
+    .timeline-date {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 9999px;
+      font-weight: 700;
+      color: #93c5fd;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-content {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(4px);
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .tag-rev { background: rgba(59, 130, 246, 0.3); color: #93c5fd; }
+    .tag-rep { background: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+    .tag-imp { background: rgba(245, 158, 11, 0.3); color: #fde68a; }
+
+    /* Notions Grid */
+    .notions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .notion-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 0.85rem;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .notion-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #f59e0b);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .notion-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+    .notion-card:hover::after {
+      opacity: 1;
+    }
+
+    .notion-card h3 {
+      color: #60a5fa;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notion-card p {
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .notion-card .highlight {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fef08a;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* Flashcards */
+    .flashcards-container {
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .flashcard-wrapper {
+      perspective: 1000px;
+      margin: 1.5rem auto;
+      height: 320px;
+      cursor: pointer;
+    }
+
+    .flashcard {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1.2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .card-front {
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      color: #fff;
+    }
+
+    .card-front .badge {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: rgba(59, 130, 246, 0.25);
+      color: #93c5fd;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .card-front .prompt-hint {
+      position: absolute;
+      bottom: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-back {
+      background: linear-gradient(145deg, #1e3a8a, #0f172a);
+      color: #fff;
+      transform: rotateY(180deg);
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    .card-back .badge {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: rgba(16, 185, 129, 0.25);
+      color: #6ee7b7;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .flashcard-content {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .card-back .flashcard-content {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #e0f2fe;
+    }
+
+    .flashcard-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .fc-btn {
+      padding: 0.75rem 1.4rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .fc-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-2px);
+    }
+
+    .fc-btn-success {
+      background: #15803d;
+      border-color: #22c55e;
+    }
+    .fc-btn-success:hover {
+      background: #16a34a;
+    }
+
+    .fc-btn-warning {
+      background: #b45309;
+      border-color: #f59e0b;
+    }
+    .fc-btn-warning:hover {
+      background: #d97706;
+    }
+
+    /* Quiz Engine */
+    .quiz-container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .quiz-progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-question-box {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-category {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #60a5fa;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-opt-btn {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: rgba(37, 99, 235, 0.25);
+      border-color: #3b82f6;
+      transform: translateX(4px);
+    }
+
+    .quiz-opt-btn.correct {
+      background: rgba(22, 163, 74, 0.35) !important;
+      border-color: #22c55e !important;
+      color: #bbf7d0 !important;
+      font-weight: 600;
+    }
+
+    .quiz-opt-btn.wrong {
+      background: rgba(220, 38, 38, 0.35) !important;
+      border-color: #ef4444 !important;
+      color: #fecaca !important;
+    }
+
+    .opt-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .quiz-explanation {
+      margin-top: 1.2rem;
+      padding: 1rem 1.25rem;
+      border-radius: 0.75rem;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid var(--card-border);
+      font-size: 0.92rem;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .quiz-explanation.show {
+      display: block;
+    }
+
+    .quiz-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Frise interactive (Order game) */
+    .drag-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .drag-item {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: grab;
+      user-select: none;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    }
+
+    .drag-item:active {
+      cursor: grabbing;
+      opacity: 0.8;
+      border-color: #3b82f6;
+    }
+
+    .drag-item.correct-place {
+      border-color: #22c55e;
+      background: rgba(22, 163, 74, 0.2);
+    }
+
+    .drag-item.wrong-place {
+      border-color: #ef4444;
+      background: rgba(220, 38, 38, 0.2);
+    }
+
+    .drag-controls {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .move-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .move-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Matching Game */
+    .match-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .match-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1.5px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      min-height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .match-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #60a5fa;
+    }
+
+    .match-card.selected {
+      background: rgba(37, 99, 235, 0.35);
+      border-color: #3b82f6;
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .match-card.matched {
+      background: rgba(22, 163, 74, 0.3);
+      border-color: #22c55e;
+      color: #86efac;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* True/False Sprint */
+    .tf-box {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--card-border);
+      border-radius: 1.2rem;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      max-width: 650px;
+      margin: 1rem auto;
+    }
+
+    .tf-statement {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tf-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .tf-btn {
+      flex: 1;
+      max-width: 200px;
+      padding: 1rem 1.5rem;
+      border-radius: 0.85rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .tf-btn-true {
+      background: #16a34a;
+      color: white;
+    }
+    .tf-btn-true:hover {
+      background: #22c55e;
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    }
+
+    .tf-btn-false {
+      background: #dc2626;
+      color: white;
+    }
+    .tf-btn-false:hover {
+      background: #ef4444;
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+
+    .tf-feedback {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      display: none;
+    }
+
+    /* Modal / Confetti */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 3rem;
+      background: rgba(11, 15, 25, 0.95);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-tabs {
+        justify-content: center;
+      }
+      .match-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-face {
+        padding: 1.2rem;
+      }
+      .flashcard-content {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <p>Redirection vers <a href="hg.html">hg.html</a>...</p>
+  <canvas id="confettiCanvas"></canvas>
+
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="flag-badge">
+          <div class="flag-blue"></div>
+          <div class="flag-white"></div>
+          <div class="flag-red"></div>
+        </div>
+        <div>
+          <h1>Révolution & Empire (1789-1815)</h1>
+          <p style="font-size: 0.8rem; color: #60a5fa; font-weight: 600;">Classe de 1ère STMG • Thème 1 : L'Europe bouleversée par la Révolution française (1789-1815) • Contrôle Continu Bac</p>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('cours')">📖 Fiche de Révision</button>
+        <button class="tab-btn" onclick="switchTab('stmg')">🎓 Spécial Contrôle 1ère STMG</button>
+        <button class="tab-btn" onclick="switchTab('flashcards')">⚡ Flashcards</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">🎯 Grand Quiz</button>
+        <button class="tab-btn" onclick="switchTab('frise')">⏳ Remettre dans l'ordre</button>
+        <button class="tab-btn" onclick="switchTab('association')">🔗 Match & Relier</button>
+        <button class="tab-btn" onclick="switchTab('vrai-faux')">⚡ Vrai ou Faux</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 1 : Cours & Pièges Corrigés -->
+    <section id="view-cours" class="section-view active">
+      <div class="hero-alert">
+        <div>
+          <h2>🎯 Objectif 20/20 pour demain !</h2>
+          <p>Voici ton cours remis à 100% dans l'ordre chronologique avec les fautes et dates corrigées, suivi de tes jeux d'entraînement.</p>
+        </div>
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="num" id="stat-dates">21</div>
+            <div class="label">Dates Clés</div>
+          </div>
+          <div class="stat-pill">
+            <div class="num" id="stat-notions">9</div>
+            <div class="label">Notions</div>
+          </div>
+          <div class="stat-pill">
+            <div class="num" style="color: #4ade80;">6</div>
+            <div class="label">Erreurs Corrigées</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Erreurs fréquentes / Pièges corrigés -->
+      <div class="card">
+        <div class="card-title">⚠️ Les 6 erreurs fréquentes repérées dans tes notes (à ne SURTOUT pas faire au contrôle !)</div>
+        <div class="corrections-grid">
+          <div class="correction-box">
+            <div class="bad">❌ "Septembre 1891 -> Monarchie constitutionnelle"</div>
+            <div class="good">✅ Septembre 1791 (et non 1891 !)</div>
+            <div class="note">Attention à la frappe : la Révolution se passe à la fin du XVIIIe siècle (1789-1799).</div>
+          </div>
+          <div class="correction-box">
+            <div class="bad">❌ "20 au 21 août 1791 -> Fuite de Varennes"</div>
+            <div class="good">✅ 20 et 21 JUIN 1791</div>
+            <div class="note">La fuite du roi et son arrestation à Varennes ont lieu au début de l'été, fin juin 1791.</div>
+          </div>
+          <div class="correction-box">
+            <div class="bad">❌ "Abolition des droits fédéraux"</div>
+            <div class="good">✅ Droits FÉODAUX (droits des seigneurs)</div>
+            <div class="note">"Fédéral" concerne un pays comme les USA. En 1789, ce sont les droits du seigneur féodal.</div>
+          </div>
+          <div class="correction-box">
+            <div class="bad">❌ "20 juillet 1794 -> Robespierre guillotiné"</div>
+            <div class="good">✅ 27-28 juillet 1794 (9-10 thermidor an II)</div>
+            <div class="note">Robespierre est arrêté le 27 juillet et guillotiné le 28 juillet 1794, mettant fin à la Terreur.</div>
+          </div>
+          <div class="correction-box">
+            <div class="bad">❌ "Napoléon devient consulat à vie"</div>
+            <div class="good">✅ Napoléon devient Premier CONSUL à vie (en 1802)</div>
+            <div class="note">Le Consulat est le nom du régime. La personne est le "Consul".</div>
+          </div>
+          <div class="correction-box">
+            <div class="bad">❌ "1812: Exil à l'île d'Elbe après Moscou"</div>
+            <div class="good">✅ 1812 : Défaite de Russie. 1814 : Exil à l'île d'Elbe</div>
+            <div class="note">En 1812 a lieu la retraite de Russie. L'exil à Elbe se produit en avril 1814, suivi des Cent-Jours en 1815.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chronologie ordonnée complète -->
+      <div class="card">
+        <div class="card-title">⏳ Chronologie Complète & Corrigée (1789 - 1815)</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Voici tous tes événements replacés rigoureusement dans l'ordre chronologique :
+        </p>
+
+        <div class="timeline">
+          <!-- 1789 -->
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">Début 1789</span>
+            <span class="timeline-tag tag-rev">Crise</span>
+            <div class="timeline-content">
+              <h3>Situation financière catastrophique de la France</h3>
+              <p>L'État royal est au bord de la faillite (déficit colossal, mauvaises récoltes, crise frumentaire). Le roi Louis XVI est contraint de convoquer les États généraux.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">Printemps 1789</span>
+            <span class="timeline-tag tag-rev">Revendications</span>
+            <div class="timeline-content">
+              <h3>Rédaction des cahiers de doléances</h3>
+              <p>Dans chaque paroisse et communauté, les sujets du royaume rédigent leurs vœux et plaintes pour le roi avant la réunion des États généraux.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">5 mai 1789</span>
+            <span class="timeline-tag tag-rev">Révolution Politique</span>
+            <div class="timeline-content">
+              <h3>Ouverture des États généraux à Versailles</h3>
+              <p>Louis XVI réunit les représentants des 3 ordres (Clergé, Noblesse, Tiers-État) à Versailles. Déception du Tiers-État qui réclame le vote par tête et non par ordre.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">17 juin 1789</span>
+            <span class="timeline-tag tag-rev">Rupture</span>
+            <div class="timeline-content">
+              <h3>Les députés du Tiers-État se proclament « Assemblée nationale »</h3>
+              <p>Représentant 96% à 98% de la population, ils affirment que la souveraineté réside dans la nation et non plus seulement dans la personne du roi.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">20 juin 1789</span>
+            <span class="timeline-tag tag-rev">Acte Fondateur</span>
+            <div class="timeline-content">
+              <h3>Le Serment du Jeu de paume</h3>
+              <p>Les députés de l'Assemblée nationale jurent de ne jamais se séparer avant d'avoir donné une constitution écrite à la France.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">14 juillet 1789</span>
+            <span class="timeline-tag tag-rev">Révolution Populaire</span>
+            <div class="timeline-content">
+              <h3>Prise de la Bastille (Chute de l'absolutisme)</h3>
+              <p>Le peuple parisien en armes s'empare de la forteresse royale de la Bastille pour chercher des armes et de la poudre, symbole du pouvoir arbitraire du roi.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">20 juillet - 6 août 1789</span>
+            <span class="timeline-tag tag-rev">Campagnes</span>
+            <div class="timeline-content">
+              <h3>La « Grande Peur » dans les campagnes</h3>
+              <p>Panique et révolte paysanne : les paysans attaquent et brûlent des châteaux pour détruire les registres de droits seigneuriaux. Conséquence : de nombreux nobles commencent à émigrer.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">Nuit du 4 août 1789</span>
+            <span class="timeline-tag tag-rev">Égalité</span>
+            <div class="timeline-content">
+              <h3>Abolition des privilèges et des droits féodaux</h3>
+              <p>Pour mettre fin aux émeutes de la Grande Peur, l'Assemblée vote l'abolition des privilèges de la noblesse et du clergé ainsi que de la féodalité. Fin de la société d'ordres.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">26 août 1789</span>
+            <span class="timeline-tag tag-rev">Droits</span>
+            <div class="timeline-content">
+              <h3>Adoption de la Déclaration des Droits de l'Homme et du Citoyen (DDHC)</h3>
+              <p>Texte fondamental posant les principes de liberté, d'égalité en droits, de propriété, de sécurité et de souveraineté nationale.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">5 et 6 octobre 1789</span>
+            <span class="timeline-tag tag-rev">Paris</span>
+            <div class="timeline-content">
+              <h3>Le roi Louis XVI est ramené de force à Paris</h3>
+              <p>Les femmes de Paris marchent sur Versailles en réclamant du pain. Le roi et la famille royale sont contraints de quitter Versailles et de s'installer au palais des Tuileries à Paris, sous surveillance du peuple.</p>
+            </div>
+          </div>
+
+          <!-- 1791 -->
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">20 - 21 juin 1791</span>
+            <span class="timeline-tag tag-rev">Trahison</span>
+            <div class="timeline-content">
+              <h3>Fuite et arrestation du roi à Varennes</h3>
+              <p>La famille royale s'enfuit de nuit pour rejoindre des troupes royalistes et autrichiennes afin de restaurer la monarchie absolue. Reconnu et arrêté à Varennes, le roi perd définitivement la confiance du peuple.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">Septembre 1791</span>
+            <span class="timeline-tag tag-rev">Nouveau Régime</span>
+            <div class="timeline-content">
+              <h3>Mise en place de la Monarchie constitutionnelle</h3>
+              <p>Adoption de la 1ère Constitution française. Le roi reste chef de l'exécutif mais son pouvoir est limité par une assemblée législative élue au suffrage censitaire.</p>
+            </div>
+          </div>
+
+          <!-- 1792 -->
+          <div class="timeline-item period-republic">
+            <span class="timeline-date">20 avril 1792</span>
+            <span class="timeline-tag tag-rep">Guerre</span>
+            <div class="timeline-content">
+              <h3>La France déclare la guerre à l'Autriche et à la Prusse</h3>
+              <p>Les puissances européennes veulent rétablir Louis XVI. La France entre dans une guerre qui va durer plus de 20 ans.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-republic">
+            <span class="timeline-date">10 août 1792</span>
+            <span class="timeline-tag tag-rep">Chute du Roi</span>
+            <div class="timeline-content">
+              <h3>Prise des Tuileries & Chute de la monarchie</h3>
+              <p>Les Sans-Culottes parisiens et les fédérés attaquent le château des Tuileries. Le roi est suspendu et enfermé à la prison du Temple. Fin définitive de la monarchie.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item period-republic">
+            <span class="timeline-date">21 septembre 1792</span>
+            <span class="timeline-tag tag-rep">République</span>
+            <div class="timeline-content">
+              <h3>Proclamation de la Première République & La Convention</h3>
+              <p>Au lendemain de la victoire militaire de Valmy (20 septembre), la nouvelle assemblée élue au suffrage universel masculin, la « Convention nationale », abolit la royauté et proclame la Ire République.</p>
+            </div>
+          </div>
+
+          <!-- 1793 -->
+          <div class="timeline-item period-terror">
+            <span class="timeline-date">21 janvier 1793</span>
+            <span class="timeline-tag tag-rep">Exécution</span>
+            <div class="timeline-content">
+              <h3>Louis XVI est guillotiné pour trahison</h3>
+              <p>Jugé coupable de conspiration contre la liberté publique et de trahison avec l'ennemi, l'ancien roi est exécuté place de la Révolution à Paris.</p>
+            </div>
+          </div>
+
+          <!-- 1794 -->
+          <div class="timeline-item period-terror">
+            <span class="timeline-date">27 - 28 juillet 1794 (9-10 thermidor)</span>
+            <span class="timeline-tag tag-rep">Fin Terreur</span>
+            <div class="timeline-content">
+              <h3>Chute et exécution de Robespierre</h3>
+              <p>Accusé de tyrannie après les excès de la Terreur, Maximilien de Robespierre et ses partisans sont arrêtés et guillotinés. Fin de la période de la Terreur.</p>
+            </div>
+          </div>
+
+          <!-- 1795 - 1799 -->
+          <div class="timeline-item period-republic">
+            <span class="timeline-date">1795 - 1799</span>
+            <span class="timeline-tag tag-rep">Directoire</span>
+            <div class="timeline-content">
+              <h3>Le Directoire</h3>
+              <p>Nouvelle république bourgeoise et modérée. Le pouvoir est confié à 5 Directeurs. Le suffrage censitaire est rétabli pour écarter les classes populaires et les plus pauvres.</p>
+            </div>
+          </div>
+
+          <!-- 1799 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">9 novembre 1799 (18 Brumaire)</span>
+            <span class="timeline-tag tag-imp">Coup d'État</span>
+            <div class="timeline-content">
+              <h3>Coup d'État de Napoléon Bonaparte</h3>
+              <p>Le général Bonaparte s'empare du pouvoir par la force et met fin au Directoire. Début du régime du Consulat.</p>
+            </div>
+          </div>
+
+          <!-- 1802 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">1802</span>
+            <span class="timeline-tag tag-imp">Consulat</span>
+            <div class="timeline-content">
+              <h3>Napoléon est nommé Premier Consul à vie</h3>
+              <p>Par plébiscite, Napoléon renforce son autorité personnelle et prépare la restauration d'une monarchie héréditaire.</p>
+            </div>
+          </div>
+
+          <!-- 1804 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">2 décembre 1804</span>
+            <span class="timeline-tag tag-imp">Empire</span>
+            <div class="timeline-content">
+              <h3>Napoléon est sacré Empereur des Français</h3>
+              <p>Napoléon Ier se couronne lui-même en présence du pape Pie VII à la cathédrale Notre-Dame de Paris. Début du Premier Empire.</p>
+            </div>
+          </div>
+
+          <!-- 1812 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">1812</span>
+            <span class="timeline-tag tag-imp">Russie</span>
+            <div class="timeline-content">
+              <h3>Échec de la campagne de Russie (Moscou)</h3>
+              <p>Incendie de Moscou et retraite désastreuse de la Grande Armée dans le froid polaire. C'est le début de l'effondrement de l'Empire.</p>
+            </div>
+          </div>
+
+          <!-- 1814 - 1815 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">Avril 1814 & 1815</span>
+            <span class="timeline-tag tag-imp">Cent-Jours</span>
+            <div class="timeline-content">
+              <h3>1er Exil sur l'île d'Elbe, puis retour des « Cent-Jours »</h3>
+              <p>Après l'invasion de la France en 1814, Napoléon abdique et est exilé sur l'île d'Elbe. Il s'en échappe en mars 1815 et reprend le pouvoir pendant 100 jours.</p>
+            </div>
+          </div>
+
+          <!-- 1815 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">18 juin 1815</span>
+            <span class="timeline-tag tag-imp">Waterloo</span>
+            <div class="timeline-content">
+              <h3>Défaite de Waterloo et exil à Sainte-Hélène</h3>
+              <p>Défaite définitive face aux Britanniques et aux Prussiens. Napoléon abdique pour la seconde fois et est exilé par les Anglais sur l'île isolée de Sainte-Hélène.</p>
+            </div>
+          </div>
+
+          <!-- 1821 -->
+          <div class="timeline-item period-empire">
+            <span class="timeline-date">5 mai 1821</span>
+            <span class="timeline-tag tag-imp">Mort</span>
+            <div class="timeline-content">
+              <h3>Mort de Napoléon à Sainte-Hélène</h3>
+              <p>Napoléon décède en captivité à l'âge de 51 ans (probablement d'un cancer de l'estomac).</p>
+            </div>
+          </div>
+
+          <!-- Conclusion globale -->
+          <div class="timeline-item period-revolution">
+            <span class="timeline-date">1789 - 1815</span>
+            <span class="timeline-tag tag-rev">Bilan</span>
+            <div class="timeline-content">
+              <h3>L'Europe bouleversée par la Révolution Française</h3>
+              <p>Diffusion des idées de liberté, d'égalité en droits, fin de la féodalité, émergence du sentiment national et naissance des nations modernes dans toute l'Europe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notions Clés -->
+      <div class="card">
+        <div class="card-title">📚 Les 9 Notions Clés (Définitions officielles & orthographe vérifiée)</div>
+        <div class="notions-grid">
+          <div class="notion-card">
+            <h3>⚡ Révolution</h3>
+            <p>Transformation <span class="highlight">brusque et profonde</span> de l'organisation politique et sociale d'une société, souvent par la force ou l'insurrection populaire.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>👑 Société d'Ancien Régime</h3>
+            <p>Société <span class="highlight">inégalitaire divisée en 3 ordres</span> : le <strong>Tiers-État</strong> (environ 96 à 98% de la population), la <strong>Noblesse</strong> (~2%) et le <strong>Clergé</strong> (~1%).</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>💎 Ordres privilégiés</h3>
+            <p>La <strong>Noblesse</strong> et le <strong>Clergé</strong> : ils bénéficient d'avantages majeurs, ne paient <span class="highlight">pas les impôts royaux directs</span> (comme la taille) et perçoivent des taxes féodales.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>🏛️ États généraux</h3>
+            <p>Assemblée extraordinaire convoquée par le roi réunissant les <span class="highlight">représentants élus des trois ordres</span> du royaume (Clergé, Noblesse, Tiers-État) pour trouver des solutions aux crises.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>⚔️ Souveraineté</h3>
+            <p>Le <span class="highlight">pouvoir suprême</span> d'édicter des lois, de décider et de gouverner sans être soumis à une autorité extérieure ou supérieure.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>🗳️ Souveraineté nationale</h3>
+            <p>Principe politique fondamental selon lequel le pouvoir suprême <span class="highlight">appartient à la Nation</span> (l'ensemble des citoyens), qui l'exerce par l'intermédiaire de ses députés élus.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>🤝 Nation</h3>
+            <p>Communauté humaine unie partageant une <span class="highlight">histoire, une culture, des valeurs et une langue communes</span>, vivant sur un même territoire et désireuse de vivre ensemble selon des lois communes.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>👖 Sans-Culottes</h3>
+            <p>Révolutionnaires parisiens issus du petit peuple (artisans, boutiquiers, travailleurs). Appelés ainsi car ils portent le <span class="highlight">pantalon en toile rayée</span> à la place de la culotte en soie des aristocrates.</p>
+          </div>
+
+          <div class="notion-card">
+            <h3>🕊️ République</h3>
+            <p>Régime politique <span class="highlight">sans roi héréditaire</span>, où la souveraineté appartient au peuple et où le pouvoir est exercé par des représentants élus pour un mandat déterminé.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section STMG : Spécial Contrôle 1ère STMG (Bac Technologique) -->
+    <section id="view-stmg" class="section-view">
+      <div class="hero-alert" style="border-color: rgba(96, 165, 250, 0.4);">
+        <div>
+          <h2 style="color: #60a5fa;">🎓 Spécial Contrôle de 1ère STMG (Bac Technologique)</h2>
+          <p>En 1ère STMG, les professeurs évaluent : <strong>la précision du vocabulaire historique</strong>, <strong>les repères chronologiques</strong> et la capacité à <strong>rédiger un paragraphe argumenté</strong>.</p>
+        </div>
+        <div class="stat-pills">
+          <div class="stat-pill">
+            <div class="num" style="color: #38bdf8;">3</div>
+            <div class="label">Axes du Programme</div>
+          </div>
+          <div class="stat-pill">
+            <div class="num" style="color: #4ade80;">2</div>
+            <div class="label">Sujets Bac Rédigés</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Les 3 axes du programme officiel de 1ère STMG -->
+      <div class="card">
+        <div class="card-title">📌 Les 3 Axes Clés du Thème 1 au Programme de 1ère STMG</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem;">
+          
+          <div class="notion-card" style="border-top: 3px solid #3b82f6;">
+            <h3 style="color: #60a5fa;">1. La rupture de 1789 & la souveraineté</h3>
+            <p><strong>Rupture politique et sociale :</strong><br>
+            • En mai-juin 1789, le Tiers-État refuse le vote par ordre et affirme que le pouvoir légitime appartient à la <span class="highlight">Nation</span> (Serment du Jeu de paume).<br>
+            • La prise de la Bastille (14 juillet) marque l'irruption du peuple en politique.<br>
+            • La nuit du 4 août détruit la société d'ordres (abolition des privilèges féodaux).<br>
+            • La <strong>DDHC (26 août 1789)</strong> pose les bases de l'égalité juridique et de la souveraineté nationale.</p>
+          </div>
+
+          <div class="notion-card" style="border-top: 3px solid #10b981;">
+            <h3 style="color: #34d399;">2. La chute du roi & la Ire République (1791-1799)</h3>
+            <p><strong>L'échec de la monarchie constitutionnelle :</strong><br>
+            • Rupture de confiance après la fuite de Varennes (juin 1791).<br>
+            • La guerre contre l'Autriche et la Prusse (avril 1792) exacerbe les tensions.<br>
+            • <strong>10 août 1792 :</strong> Prise des Tuileries par les Sans-Culottes et les fédérés, chute définitive de la monarchie.<br>
+            • Proclamation de la <span class="highlight">Première République (21 sept. 1792)</span>, exécution de Louis XVI (21 janv. 1793).<br>
+            • Période de la Terreur (1793-1794), puis réaction bourgeoise modérée avec le <strong>Directoire (1795-1799)</strong> au suffrage censitaire.</p>
+          </div>
+
+          <div class="notion-card" style="border-top: 3px solid #f59e0b;">
+            <h3 style="color: #fbbf24;">3. Consulat & Empire : ordre et diffusion (1799-1815)</h3>
+            <p><strong>Entre héritage révolutionnaire et autoritarisme :</strong><br>
+            • Coup d'État du 18 Brumaire (1799) : Napoléon Bonaparte impose le Consulat, puis se fait sacrer Empereur le <strong>2 décembre 1804</strong>.<br>
+            • Stabilisation de la France par les <em>« masses de granit »</em> : Code civil (1804), Banque de France, préfets.<br>
+            • Diffusion des principes révolutionnaires en Europe (abolition des privilèges, Code civil), mais domination militaire qui réveille le <span class="highlight">sentiment national</span> contre la France (Espagne, Prusse).<br>
+            • Chute à Waterloo (18 juin 1815) et exil à Sainte-Hélène.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sujets types de contrôle / Bac STMG entièrement rédigés -->
+      <div class="card">
+        <div class="card-title">📝 2 Sujets Types de Contrôle en 1ère STMG (Rédigés & Prêts à Mémoriser)</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Voici la structure exacte attendue par les professeurs de lycée pour une question problématisée ou un paragraphe argumenté :
+        </p>
+
+        <!-- Sujet 1 -->
+        <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid var(--card-border); border-radius: 0.85rem; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h3 style="color: #fbbf24; font-size: 1.15rem; margin-bottom: 0.8rem;">
+            📌 Sujet 1 : « Montrez en quoi l'année 1789 marque une rupture politique et sociale majeure avec l'Ancien Régime. »
+          </h3>
+          <div style="font-size: 0.93rem; line-height: 1.7; color: #e2e8f0;">
+            <p><strong style="color: #60a5fa;">[Introduction]</strong> En 1789, la France est confrontée à une grave crise financière et frumentaire qui oblige Louis XVI à convoquer les États généraux. L'année 1789 bouleverse entièrement l'ordre politique et social du royaume.</p>
+            
+            <p style="margin-top: 0.6rem;"><strong style="color: #60a5fa;">[Argument 1 : Rupture politique]</strong> <em>D'abord,</em> une révolution politique s'opère : le 17 juin, les députés du Tiers-État se proclament « Assemblée nationale », puis prêtent le <strong>Serment du Jeu de paume le 20 juin 1789</strong>, jurant de donner une constitution à la France. Le principe de la <strong>souveraineté nationale</strong> remplace la souveraineté absolue de droit divin du roi.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #60a5fa;">[Argument 2 : Rupture populaire]</strong> <em>Ensuite,</em> le peuple entre en action le <strong>14 juillet 1789 avec la prise de la Bastille</strong>, détruisant le symbole de l'arbitraire royal. Dans les campagnes, la « Grande Peur » (juillet-août) pousse les paysans à attaquer les châteaux des seigneurs.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #60a5fa;">[Argument 3 : Rupture sociale et juridique]</strong> <em>Enfin,</em> pour rétablir le calme, l'Assemblée vote dans la <strong>nuit du 4 août 1789 l'abolition des privilèges et des droits féodaux</strong>, mettant fin à la société d'ordres. Cette égalité juridique est consacrée le <strong>26 août 1789 par la Déclaration des Droits de l'Homme et du Citoyen (DDHC)</strong> qui garantit la liberté et l'égalité en droits.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #60a5fa;">[Conclusion]</strong> <em>En conclusion,</em> l'année 1789 consacre la fin définitive de l'Ancien Régime et fonde une nation de citoyens égaux en droit.</p>
+          </div>
+        </div>
+
+        <!-- Sujet 2 -->
+        <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid var(--card-border); border-radius: 0.85rem; padding: 1.5rem;">
+          <h3 style="color: #fbbf24; font-size: 1.15rem; margin-bottom: 0.8rem;">
+            📌 Sujet 2 : « Expliquez pourquoi et comment la monarchie s'effondre en France entre 1791 et 1792. »
+          </h3>
+          <div style="font-size: 0.93rem; line-height: 1.7; color: #e2e8f0;">
+            <p><strong style="color: #34d399;">[Introduction]</strong> En septembre 1791, la France tente une monarchie constitutionnelle où le roi partage le pouvoir avec une assemblée. Pourtant, moins d'un an plus tard, ce régime s'effondre.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #34d399;">[Cause 1 : La rupture de confiance avec le roi]</strong> <em>Premièrement,</em> la tentative de <strong>fuite de Louis XVI arrêtée à Varennes les 20 et 21 juin 1791</strong> détruit le lien avec le peuple. Le roi est perçu comme un traître voulant rétablir l'absolutisme avec l'aide des souverains étrangers.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #34d399;">[Cause 2 : Le déclenchement de la guerre]</strong> <em>Deuxièmement,</em> en <strong>avril 1792</strong>, la France déclare la guerre à l'Autriche et à la Prusse. Les défaites initiales et la menace d'invasion étrangère radicalisent les révolutionnaires parisiens.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #34d399;">[L'événement déclencheur : Le 10 août 1792]</strong> <em>Troisièmement,</em> le <strong>10 août 1792</strong>, les <strong>Sans-Culottes</strong> parisiens et les volontaires fédérés prennent d'assaut le palais des Tuileries. L'Assemblée suspend le roi et l'emprisonne.</p>
+
+            <p style="margin-top: 0.6rem;"><strong style="color: #34d399;">[Conséquence : La République]</strong> <em>Ainsi,</em> la nouvelle assemblée (« La Convention »), élue au suffrage universel masculin, <strong>proclame la Première République le 21 septembre 1792</strong>. La royauté est abolie, et Louis XVI est guillotiné le 21 janvier 1793 pour trahison.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glossaire & Vocabulaire valorisé en 1ère STMG -->
+      <div class="card">
+        <div class="card-title">💎 Vocabulaire académique qui rapporte des points au Bac STMG</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div style="background: rgba(30, 41, 59, 0.6); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #60a5fa;">
+            <strong style="color: #93c5fd;">Suffrage censitaire vs Suffrage universel :</strong>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 0.3rem;">
+              • Censitaire (1791, 1795) : vote réservé aux hommes payant un certain impôt (le cens).<br>
+              • Universel masculin (1792) : vote accordé à tous les citoyens hommes sans condition de richesse.
+            </p>
+          </div>
+          <div style="background: rgba(30, 41, 59, 0.6); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #f59e0b;">
+            <strong style="color: #fde68a;">« Masses de granit » (Napoléon) :</strong>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 0.3rem;">
+              Institutions et réformes durables créées sous le Consulat pour stabiliser l'État : Code civil (1804), préfets dans chaque département, Banque de France, création des lycées.
+            </p>
+          </div>
+          <div style="background: rgba(30, 41, 59, 0.6); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #ef4444;">
+            <strong style="color: #fca5a5;">Sentiment national européen :</strong>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 0.3rem;">
+              Prise de conscience par un peuple de son identité collective et de sa volonté de s'administrer lui-même. Sous Napoléon, la domination française réveille ce sentiment en Espagne et en Allemagne.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 : Flashcards 3D -->
+    <section id="view-flashcards" class="section-view">
+      <div class="card">
+        <div class="card-title">⚡ Flashcards Interactives : Révise en recto-verso</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 1rem;">
+          Clique sur la carte pour voir la réponse. Marque « Maîtrisé » ou « À revoir » pour t'entraîner !
+        </p>
+
+        <div class="flashcards-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem; color: #94a3b8;">
+            <span id="fc-counter">Carte 1 / 18</span>
+            <span id="fc-mode-label">Mode : Tout mélangé</span>
+          </div>
+
+          <div class="flashcard-wrapper" onclick="flipCard()">
+            <div class="flashcard" id="flashcardElement">
+              <div class="card-face card-front">
+                <span class="badge" id="fc-type-badge">Question</span>
+                <div class="flashcard-content" id="fc-front-text">Chargement...</div>
+                <div class="prompt-hint">👆 Clique pour retourner</div>
+              </div>
+              <div class="card-face card-back">
+                <span class="badge" style="background: rgba(16, 185, 129, 0.3); color: #86efac;">Réponse</span>
+                <div class="flashcard-content" id="fc-back-text">Réponse ici</div>
+                <div class="prompt-hint">👆 Clique pour retourner</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flashcard-controls">
+            <button class="fc-btn" onclick="prevCard()">⬅️ Précédente</button>
+            <button class="fc-btn fc-btn-warning" onclick="markCard(false)">🤔 À revoir</button>
+            <button class="fc-btn fc-btn-success" onclick="markCard(true)">✅ Maîtrisé</button>
+            <button class="fc-btn" onclick="nextCard()">Suivante ➡️</button>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; justify-content: center;">
+            <button class="tab-btn" onclick="filterFlashcards('all')">Tout</button>
+            <button class="tab-btn" onclick="filterFlashcards('dates')">Dates seules</button>
+            <button class="tab-btn" onclick="filterFlashcards('notions')">Notions seules</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 : Quiz -->
+    <section id="view-quiz" class="section-view">
+      <div class="card quiz-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+          <div class="card-title" style="margin: 0;">🎯 Grand Quiz du Contrôle (15 Questions)</div>
+          <div style="font-weight: 700; color: #60a5fa;" id="quiz-score-badge">Score : 0 / 0</div>
+        </div>
+
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quiz-progress"></div>
+        </div>
+
+        <div class="quiz-question-box" id="quiz-box">
+          <div class="question-category" id="quiz-cat">Catégorie</div>
+          <div class="question-title" id="quiz-question">Question ici ?</div>
+        </div>
+
+        <div class="quiz-options" id="quiz-options">
+          <!-- Options injectées en JS -->
+        </div>
+
+        <div class="quiz-explanation" id="quiz-explanation">
+          <!-- Explications injectées -->
+        </div>
+
+        <div class="quiz-action-bar">
+          <button class="fc-btn" onclick="restartQuiz()">🔄 Recommencer</button>
+          <button class="btn-action" id="quiz-next-btn" style="display: none;" onclick="nextQuizQuestion()">Question suivante ➡️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 : Remettre dans l'ordre (Frise Interactive) -->
+    <section id="view-frise" class="section-view">
+      <div class="card" style="max-width: 800px; margin: 0 auto;">
+        <div class="card-title">⏳ Défi Chronologique : Remets les événements dans l'ordre exact !</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+          Utilise les flèches 🔼 et 🔽 pour déplacer les événements du <strong>plus ancien</strong> (en haut) au <strong>plus récent</strong> (en bas). Ensuite clique sur « Valider » !
+        </p>
+
+        <div style="display: flex; gap: 0.8rem; margin-bottom: 1.2rem;">
+          <button class="fc-btn" onclick="generateTimelineChallenge('1789')">Année 1789 seule (Début)</button>
+          <button class="fc-btn" onclick="generateTimelineChallenge('1791-1799')">1791 à 1799 (République)</button>
+          <button class="fc-btn" onclick="generateTimelineChallenge('empire')">Napoléon (1799-1821)</button>
+          <button class="fc-btn" onclick="generateTimelineChallenge('all')">Mix Total</button>
+        </div>
+
+        <div class="drag-list" id="timelineDragList">
+          <!-- Items injectés -->
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+          <button class="btn-action" onclick="checkTimelineOrder()">✔️ Valider mon classement</button>
+          <button class="fc-btn" onclick="shuffleTimelineItems()">🔀 Remélanger</button>
+        </div>
+
+        <div id="timelineFeedback" style="margin-top: 1rem; text-align: center; font-weight: 700; font-size: 1.1rem;"></div>
+      </div>
+    </section>
+
+    <!-- Section 5 : Relier / Association -->
+    <section id="view-association" class="section-view">
+      <div class="card" style="max-width: 850px; margin: 0 auto;">
+        <div class="card-title">🔗 Jeu d'Association : Relie la Date au bon Événement</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+          Clique d'abord sur une date à gauche, puis sur l'événement correspondant à droite !
+        </p>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div style="font-size: 0.95rem; color: #94a3b8;">Paires trouvées : <strong id="match-pairs-count" style="color: #4ade80;">0 / 6</strong></div>
+          <button class="fc-btn" onclick="initMatchGame()">🔄 Nouvelles cartes</button>
+        </div>
+
+        <div class="match-grid">
+          <div class="match-col" id="match-left">
+            <!-- Dates -->
+          </div>
+          <div class="match-col" id="match-right">
+            <!-- Événements -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6 : Vrai ou Faux Express -->
+    <section id="view-vrai-faux" class="section-view">
+      <div class="card" style="max-width: 750px; margin: 0 auto;">
+        <div class="card-title">⚡ Sprint Vrai ou Faux : Traque les Pièges d'Histoire !</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: center;">
+          10 affirmations pièges basées sur les erreurs fréquentes des contrôles. Réponds le plus vite possible !
+        </p>
+
+        <div class="tf-box">
+          <div style="display: flex; justify-content: space-between; color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem;">
+            <span id="tf-counter">Question 1 / 10</span>
+            <span id="tf-score-label">Score : 0 point</span>
+          </div>
+
+          <div class="tf-statement" id="tf-text">
+            Affirmation en cours...
+          </div>
+
+          <div class="tf-buttons">
+            <button class="tf-btn tf-btn-true" onclick="answerTF(true)">✅ VRAI</button>
+            <button class="tf-btn tf-btn-false" onclick="answerTF(false)">❌ FAUX</button>
+          </div>
+
+          <div class="tf-feedback" id="tf-feedback"></div>
+
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-action" id="tf-next-btn" style="display: none; margin: 0 auto;" onclick="nextTF()">Affirmation suivante ➡️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>💡 Conçu pour le programme d'Histoire de 1ère STMG • Thème 1 : L'Europe bouleversée par la Révolution française (1789-1815).</p>
+    <p style="margin-top: 0.4rem; color: #64748b;">N'oublie pas : relis bien les dates pièges (1791 et non 1891, 20-21 juin pour Varennes, droits féodaux et non fédéraux) ! Bon courage pour ton contrôle demain !</p>
+  </footer>
+
+  <script>
+    /* =========================================================================
+       DONNÉES DU COURS (100% Exactes & Chronologiques)
+       ========================================================================= */
+    const CHRONO_DATA = [
+      { date: "1789 (Début)", yearNum: 1789.0, event: "Situation financière catastrophique de la France (déficit et famine)", cat: "rev" },
+      { date: "Printemps 1789", yearNum: 1789.2, event: "Rédaction des cahiers de doléances dans tout le royaume", cat: "rev" },
+      { date: "5 mai 1789", yearNum: 1789.34, event: "Ouverture des États généraux à Versailles par Louis XVI", cat: "rev" },
+      { date: "17 juin 1789", yearNum: 1789.46, event: "Le Tiers-État se proclame Assemblée nationale (souveraineté nationale)", cat: "rev" },
+      { date: "20 juin 1789", yearNum: 1789.47, event: "Serment du Jeu de paume (ne pas se séparer sans constitution)", cat: "rev" },
+      { date: "14 juillet 1789", yearNum: 1789.53, event: "Prise de la Bastille (chute du symbole de la monarchie absolue)", cat: "rev" },
+      { date: "20 juillet - 6 août 1789", yearNum: 1789.56, event: "La Grande Peur dans les campagnes (châteaux brûlés, émigration des nobles)", cat: "rev" },
+      { date: "Nuit du 4 août 1789", yearNum: 1789.59, event: "Abolition des privilèges et des droits féodaux (fin des 3 ordres)", cat: "rev" },
+      { date: "26 août 1789", yearNum: 1789.65, event: "Adoption de la Déclaration des Droits de l'Homme et du Citoyen (DDHC)", cat: "rev" },
+      { date: "5-6 octobre 1789", yearNum: 1789.76, event: "Le roi Louis XVI et sa famille sont ramenés de force à Paris (Tuileries)", cat: "rev" },
+      { date: "20 - 21 juin 1791", yearNum: 1791.47, event: "Fuite de la famille royale et arrestation à Varennes (perte de confiance)", cat: "rev" },
+      { date: "Septembre 1791", yearNum: 1791.70, event: "Mise en place de la Monarchie constitutionnelle (pouvoir du roi limité)", cat: "rev" },
+      { date: "20 avril 1792", yearNum: 1792.30, event: "La France déclare la guerre à l'Autriche et à la Prusse", cat: "rep" },
+      { date: "10 août 1792", yearNum: 1792.61, event: "Prise des Tuileries par les Sans-Culottes et chute définitive de la royauté", cat: "rep" },
+      { date: "21 septembre 1792", yearNum: 1792.72, event: "Proclamation de la 1ère République par la Convention nationale", cat: "rep" },
+      { date: "21 janvier 1793", yearNum: 1793.06, event: "Louis XVI est guillotiné pour trahison", cat: "rep" },
+      { date: "27 - 28 juillet 1794", yearNum: 1794.57, event: "Chute et exécution de Robespierre (fin de la Terreur)", cat: "rep" },
+      { date: "1795 à 1799", yearNum: 1795.0, event: "Le Directoire (République bourgeoise, suffrage censitaire réinstauré)", cat: "rep" },
+      { date: "9 nov. 1799 (18 Brumaire)", yearNum: 1799.85, event: "Coup d'État de Napoléon Bonaparte (début du Consulat)", cat: "imp" },
+      { date: "1802", yearNum: 1802.0, event: "Napoléon Bonaparte devient Premier Consul à vie", cat: "imp" },
+      { date: "2 décembre 1804", yearNum: 1804.92, event: "Napoléon est sacré Empereur des Français à Notre-Dame de Paris", cat: "imp" },
+      { date: "1812", yearNum: 1812.5, event: "Échec de la prise de Moscou & retraite désastreuse de Russie", cat: "imp" },
+      { date: "Avril 1814 - 1815", yearNum: 1814.3, event: "Exil sur l'île d'Elbe, puis reprise éphémère du pouvoir (les Cent-Jours)", cat: "imp" },
+      { date: "18 juin 1815", yearNum: 1815.46, event: "Défaite de Waterloo et exil définitif sur l'île de Sainte-Hélène", cat: "imp" },
+      { date: "5 mai 1821", yearNum: 1821.34, event: "Mort de Napoléon Bonaparte à Sainte-Hélène", cat: "imp" },
+      { date: "1789 - 1815", yearNum: 1825.0, event: "Période où l'Europe est entièrement bouleversée par la Révolution française", cat: "imp" }
+    ];
+
+    const NOTIONS_DATA = [
+      { term: "Révolution", def: "Transformation brusque et profonde de l'organisation politique et sociale d'un pays." },
+      { term: "Société d'Ancien Régime", def: "Société inégalitaire divisée en 3 ordres : Tiers-État (96-98%), Noblesse (2%), Clergé (1%)." },
+      { term: "Ordres privilégiés", def: "Noblesse et Clergé : ils ne paient pas les impôts royaux directs et possèdent des privilèges féodaux." },
+      { term: "États généraux", def: "Assemblée réunie par le roi composée des représentants des trois ordres du royaume." },
+      { term: "Souveraineté", def: "Pouvoir suprême de décider, de commander et de légiférer sans dépendre d'une autorité supérieure." },
+      { term: "Souveraineté nationale", def: "Principe selon lequel le pouvoir suprême réside dans la Nation, représentée par des députés élus." },
+      { term: "Nation", def: "Communauté unie par une même histoire, culture, langue, vivant sur un territoire et obéissant aux mêmes lois." },
+      { term: "Sans-Culottes", def: "Révolutionnaires populaires parisiens portant le pantalon rayé à la place de la culotte aristocratique." },
+      { term: "République", def: "Régime politique sans monarque où le pouvoir est exercé par des représentants élus par le peuple." }
+    ];
+
+    /* Audio FX via Web Audio API */
+    let audioCtx = null;
+    function playBeep(freq = 520, type = 'sine', duration = 0.15) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function soundSuccess() {
+      playBeep(440, 'sine', 0.1);
+      setTimeout(() => playBeep(554.37, 'sine', 0.1), 100);
+      setTimeout(() => playBeep(659.25, 'sine', 0.25), 200);
+    }
+    function soundWrong() {
+      playBeep(220, 'sawtooth', 0.2);
+      setTimeout(() => playBeep(180, 'sawtooth', 0.3), 150);
+    }
+
+    /* Confetti FX */
+    function triggerConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const pieces = [];
+      const colors = ['#2563eb', '#dc2626', '#ffffff', '#f59e0b', '#10b981'];
+      for (let i = 0; i < 90; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          size: Math.random() * 8 + 4,
+          speed: Math.random() * 4 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: Math.random() * 8 - 4
+        });
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.rotation += p.rotationSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+        frame++;
+        if (frame < 120) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      animate();
+    }
+
+    /* Tab switcher */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.section-view').forEach(view => view.classList.remove('active'));
+      
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const target = document.getElementById('view-' + tabId);
+      if (target) target.classList.add('active');
+
+      if (tabId === 'quiz' && currentQuizIndex === 0) startQuiz();
+      if (tabId === 'frise') generateTimelineChallenge('1789');
+      if (tabId === 'association') initMatchGame();
+      if (tabId === 'vrai-faux' && tfIndex === 0) loadTF();
+    }
+
+    /* =========================================================================
+       SECTION FLASHCARDS
+       ========================================================================= */
+    let flashcardsList = [];
+    let currentFcIndex = 0;
+    let isFlipped = false;
+
+    function buildFlashcardDeck(filter = 'all') {
+      flashcardsList = [];
+      if (filter === 'all' || filter === 'dates') {
+        CHRONO_DATA.slice(0, 15).forEach(item => {
+          flashcardsList.push({
+            type: "Date historique",
+            front: item.date,
+            back: item.event
+          });
+        });
+      }
+      if (filter === 'all' || filter === 'notions') {
+        NOTIONS_DATA.forEach(n => {
+          flashcardsList.push({
+            type: "Définition de notion",
+            front: `Que signifie : « ${n.term} » ?`,
+            back: n.def
+          });
+        });
+      }
+      flashcardsList.sort(() => Math.random() - 0.5);
+      currentFcIndex = 0;
+      updateFlashcardView();
+    }
+
+    function updateFlashcardView() {
+      const cardEl = document.getElementById('flashcardElement');
+      cardEl.classList.remove('flipped');
+      isFlipped = false;
+
+      if (flashcardsList.length === 0) return;
+      const item = flashcardsList[currentFcIndex];
+      document.getElementById('fc-counter').textContent = `Carte ${currentFcIndex + 1} / ${flashcardsList.length}`;
+      document.getElementById('fc-type-badge').textContent = item.type;
+      document.getElementById('fc-front-text').textContent = item.front;
+      document.getElementById('fc-back-text').textContent = item.back;
+    }
+
+    function flipCard() {
+      const cardEl = document.getElementById('flashcardElement');
+      isFlipped = !isFlipped;
+      cardEl.classList.toggle('flipped', isFlipped);
+      playBeep(480, 'sine', 0.05);
+    }
+
+    function nextCard() {
+      if (currentFcIndex < flashcardsList.length - 1) {
+        currentFcIndex++;
+        updateFlashcardView();
+      } else {
+        currentFcIndex = 0;
+        updateFlashcardView();
+      }
+    }
+
+    function prevCard() {
+      if (currentFcIndex > 0) {
+        currentFcIndex--;
+        updateFlashcardView();
+      }
+    }
+
+    function markCard(known) {
+      if (known) {
+        soundSuccess();
+      } else {
+        playBeep(260, 'sine', 0.15);
+      }
+      nextCard();
+    }
+
+    function filterFlashcards(type) {
+      buildFlashcardDeck(type);
+    }
+
+    /* =========================================================================
+       SECTION GRAND QUIZ
+       ========================================================================= */
+    const QUIZ_QUESTIONS = [
+      {
+        cat: "Date Fondatrice",
+        q: "Quelle date marque la prise de la Bastille par le peuple parisien ?",
+        options: ["5 mai 1789", "14 juillet 1789", "20 juin 1789", "10 août 1792"],
+        answer: 1,
+        exp: "Le 14 juillet 1789, le peuple prend la Bastille pour chercher des armes. C'est l'effondrement de l'absolutisme royal."
+      },
+      {
+        cat: "Piège Fréquent",
+        q: "Que vote l'Assemblée nationale lors de la fameuse nuit du 4 août 1789 ?",
+        options: [
+          "L'abolition des droits fédéraux",
+          "L'abolition des privilèges et des droits féodaux",
+          "L'exécution du roi Louis XVI",
+          "La création du Directoire"
+        ],
+        answer: 1,
+        exp: "ATTENTION AU PIÈGE : Ce sont les droits FÉODAUX (liés aux seigneurs et à la féodalité), et non pas 'fédéraux' !"
+      },
+      {
+        cat: "Chronologie",
+        q: "Quand la monarchie constitutionnelle a-t-elle été officiellement mise en place ?",
+        options: ["Septembre 1791", "Septembre 1891", "Mai 1789", "Décembre 1804"],
+        answer: 0,
+        exp: "C'est en SEPTEMBRE 1791 (attention à ne pas écrire 1891 par faute de frappe) !"
+      },
+      {
+        cat: "Fuite du Roi",
+        q: "Où et quand la famille royale en fuite a-t-elle été arrêtée ?",
+        options: [
+          "À Varennes, les 20 et 21 juin 1791",
+          "À Varennes, les 20 et 21 août 1791",
+          "À Versailles, le 14 juillet 1789",
+          "À Moscou, en 1812"
+        ],
+        answer: 0,
+        exp: "La fuite de Varennes a lieu les 20-21 JUIN 1791. Le roi perd définitivement la confiance des Français."
+      },
+      {
+        cat: "Chute de la Royauté",
+        q: "Quel événement met définitivement fin à la monarchie le 10 août 1792 ?",
+        options: [
+          "Le Serment du Jeu de paume",
+          "L'attaque du château des Tuileries par les Sans-Culottes et les fédérés",
+          "Le coup d'État du 18 Brumaire",
+          "La défaite de Waterloo"
+        ],
+        answer: 1,
+        exp: "Le 10 août 1792, les Tuileries sont prises d'assaut. Le roi est suspendu et emprisonné. La République sera proclamée le 21 septembre 1792."
+      },
+      {
+        cat: "Notion",
+        q: "Comment appelle-t-on le principe où le pouvoir suprême appartient à la nation représentée par des élus ?",
+        options: ["Souveraineté nationale", "Monarchie absolue", "Suffrage censitaire", "Ordre privilégié"],
+        answer: 0,
+        exp: "C'est la Souveraineté nationale, affirmée dès 1789 et inscrite dans la Déclaration des Droits de l'Homme (DDHC)."
+      },
+      {
+        cat: "Fin de la Terreur",
+        q: "Quand Maximilien de Robespierre a-t-il été arrêté et guillotiné ?",
+        options: ["21 janvier 1793", "27-28 juillet 1794 (9-10 thermidor)", "9 novembre 1799", "18 juin 1815"],
+        answer: 1,
+        exp: "Robespierre est arrêté le 27 juillet (9 thermidor) et guillotiné le 28 juillet 1794, mettant un terme à la Terreur."
+      },
+      {
+        cat: "Régimes Politiques",
+        q: "Quel régime politique dirige la France entre 1795 et 1799 avec un suffrage censitaire réservé aux plus riches ?",
+        options: ["Le Consulat", "Le Directoire", "L'Empire", "La Convention montagnarde"],
+        answer: 1,
+        exp: "C'est le Directoire, une république modérée dirigée par des bourgeois qui écartaient les couches populaires."
+      },
+      {
+        cat: "Napoléon Bonaparte",
+        q: "Quel événement a lieu le 2 décembre 1804 ?",
+        options: [
+          "Coup d'État du 18 Brumaire",
+          "Sacre de Napoléon Empereur des Français à Notre-Dame",
+          "Défaite de Waterloo",
+          "Mort de Napoléon à Sainte-Hélène"
+        ],
+        answer: 1,
+        exp: "Le 2 décembre 1804, Napoléon est sacré Empereur des Français en présence du Pape Pie VII."
+      },
+      {
+        cat: "Chute de l'Empire",
+        q: "Après quelle défaite historique Napoléon est-il définitivement exilé sur l'île de Sainte-Hélène en 1815 ?",
+        options: ["Moscou (1812)", "Valmy (1792)", "Waterloo (1815)", "Brumaire (1799)"],
+        answer: 2,
+        exp: "Le 18 juin 1815, Napoléon perd la bataille de Waterloo contre les Anglais et les Prussiens, marquant la fin des Cent-Jours."
+      },
+      {
+        cat: "Notion & Société",
+        q: "Quelle proportion de la population le Tiers-État représentait-il environ en 1789 ?",
+        options: ["Environ 50%", "Environ 75%", "Environ 96% à 98%", "Seulement 2%"],
+        answer: 2,
+        exp: "Le Tiers-État représentait l'écrasante majorité du peuple (environ 96% à 98%), face à 2% pour la noblesse et 1% pour le clergé."
+      },
+      {
+        cat: "Symboles",
+        q: "Pourquoi appelait-on les militants révolutionnaires populaires les « Sans-Culottes » ?",
+        options: [
+          "Parce qu'ils refusaient de porter des vêtements",
+          "Parce qu'ils portaient des pantalons en toile au lieu des culottes de soie des nobles",
+          "Parce qu'ils ne portaient pas de chapeau",
+          "Parce qu'ils n'avaient pas d'armes"
+        ],
+        answer: 1,
+        exp: "Les bourgeois et aristocrates portaient la culotte courte serrée avec des bas ; le peuple portait le pantalon long en tissu rayé."
+      },
+      {
+        cat: "Mort du Roi",
+        q: "Pour quel motif officiel le roi Louis XVI a-t-il été guillotiné le 21 janvier 1793 ?",
+        options: [
+          "Trahison et conspiration contre la liberté publique",
+          "Dette de jeu personnelle",
+          "Vol des joyaux de la couronne",
+          "Tentative d'incendie de Paris"
+        ],
+        answer: 0,
+        exp: "Louis XVI a été jugé par la Convention pour haute trahison envers la Nation après la découverte de ses correspondances secrètes avec l'ennemi."
+      },
+      {
+        cat: "Grand Événement",
+        q: "Quel engagement les députés prennent-ils le 20 juin 1789 lors du Serment du Jeu de paume ?",
+        options: [
+          "Ne jamais se séparer avant d'avoir donné une constitution écrite à la France",
+          "Exécuter le roi immédiatement",
+          "Déclarer la guerre à toute l'Europe",
+          "Supprimer immédiatement l'armée royale"
+        ],
+        answer: 0,
+        exp: "Ils jurent de ne pas se séparer tant qu'une constitution n'a pas été rédigée, fondant ainsi l'Assemblée constituante."
+      },
+      {
+        cat: "Dates & Définition",
+        q: "Quand et de quoi Napoléon est-il décédé en exil sur l'île de Sainte-Hélène ?",
+        options: [
+          "En 1815, sur le champ de bataille de Waterloo",
+          "Le 5 mai 1821, de maladie (cancer de l'estomac)",
+          "En 1799, pendant un duel",
+          "En 1830, guillotiné à Paris"
+        ],
+        answer: 1,
+        exp: "Napoléon meurt le 5 mai 1821 sur l'île britannique de Sainte-Hélène d'un cancer de l'estomac à l'âge de 51 ans."
+      }
+    ];
+
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+
+    function startQuiz() {
+      currentQuizIndex = 0;
+      quizScore = 0;
+      showQuizQuestion();
+    }
+
+    function showQuizQuestion() {
+      quizAnswered = false;
+      const q = QUIZ_QUESTIONS[currentQuizIndex];
+      document.getElementById('quiz-score-badge').textContent = `Score : ${quizScore} / ${currentQuizIndex}`;
+      document.getElementById('quiz-progress').style.width = `${((currentQuizIndex) / QUIZ_QUESTIONS.length) * 100}%`;
+      document.getElementById('quiz-cat').textContent = `Question ${currentQuizIndex + 1}/${QUIZ_QUESTIONS.length} • ${q.cat}`;
+      document.getElementById('quiz-question').textContent = q.q;
+
+      const optsBox = document.getElementById('quiz-options');
+      optsBox.innerHTML = '';
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt-btn';
+        btn.innerHTML = `<span class="opt-letter">${String.fromCharCode(65 + idx)}</span> <span>${optText}</span>`;
+        btn.onclick = () => handleQuizAnswer(idx);
+        optsBox.appendChild(btn);
+      });
+
+      const expEl = document.getElementById('quiz-explanation');
+      expEl.className = 'quiz-explanation';
+      expEl.innerHTML = '';
+
+      document.getElementById('quiz-next-btn').style.display = 'none';
+    }
+
+    function handleQuizAnswer(selectedIndex) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const q = QUIZ_QUESTIONS[currentQuizIndex];
+      const buttons = document.querySelectorAll('.quiz-opt-btn');
+      
+      buttons.forEach(b => b.disabled = true);
+
+      const expEl = document.getElementById('quiz-explanation');
+      expEl.classList.add('show');
+
+      if (selectedIndex === q.answer) {
+        quizScore++;
+        soundSuccess();
+        buttons[selectedIndex].classList.add('correct');
+        expEl.innerHTML = `<strong style="color: #4ade80;">Bravo, excellente réponse !</strong><br>${q.exp}`;
+      } else {
+        soundWrong();
+        buttons[selectedIndex].classList.add('wrong');
+        buttons[q.answer].classList.add('correct');
+        expEl.innerHTML = `<strong style="color: #f87171;">Faux !</strong> La bonne réponse était la <strong>${String.fromCharCode(65 + q.answer)}</strong>.<br>${q.exp}`;
+      }
+
+      document.getElementById('quiz-score-badge').textContent = `Score : ${quizScore} / ${currentQuizIndex + 1}`;
+      document.getElementById('quiz-next-btn').style.display = 'inline-flex';
+    }
+
+    function nextQuizQuestion() {
+      currentQuizIndex++;
+      if (currentQuizIndex < QUIZ_QUESTIONS.length) {
+        showQuizQuestion();
+      } else {
+        // Quiz terminé
+        document.getElementById('quiz-progress').style.width = '100%';
+        triggerConfetti();
+        soundSuccess();
+        const box = document.getElementById('quiz-box');
+        box.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem 0;">
+            <h2 style="font-size: 1.8rem; color: #fbbf24; margin-bottom: 0.5rem;">🎉 Quiz Terminé !</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 1rem;">Ton score final est de : <strong style="color: #4ade80;">${quizScore} / ${QUIZ_QUESTIONS.length}</strong> (${Math.round((quizScore / QUIZ_QUESTIONS.length) * 20)}/20)</p>
+            <p style="color: #cbd5e1;">${quizScore >= 12 ? '🔥 Superbe travail ! Tu es parfaitement prêt pour ton contrôle d\'histoire demain !' : '💪 Bon entraînement ! Relis la fiche de révision et retente le quiz pour viser le 20/20 !'}</p>
+          </div>
+        `;
+        document.getElementById('quiz-options').innerHTML = '';
+        document.getElementById('quiz-explanation').style.display = 'none';
+        document.getElementById('quiz-next-btn').style.display = 'none';
+      }
+    }
+
+    function restartQuiz() {
+      startQuiz();
+    }
+
+    /* =========================================================================
+       SECTION FRISE (REMETTRE DANS L'ORDRE)
+       ========================================================================= */
+    let timelineChallengeItems = [];
+
+    function generateTimelineChallenge(filter = '1789') {
+      let pool = [];
+      if (filter === '1789') {
+        pool = CHRONO_DATA.filter(d => d.yearNum >= 1789 && d.yearNum < 1790);
+      } else if (filter === '1791-1799') {
+        pool = CHRONO_DATA.filter(d => d.yearNum >= 1791 && d.yearNum < 1800);
+      } else if (filter === 'empire') {
+        pool = CHRONO_DATA.filter(d => d.yearNum >= 1799 && d.yearNum <= 1822);
+      } else {
+        pool = CHRONO_DATA.slice(0, 16);
+      }
+
+      // Prendre 5 à 6 événements
+      timelineChallengeItems = [...pool].sort(() => Math.random() - 0.5).slice(0, 5);
+      renderTimelineChallenge();
+      document.getElementById('timelineFeedback').textContent = '';
+    }
+
+    function renderTimelineChallenge() {
+      const container = document.getElementById('timelineDragList');
+      container.innerHTML = '';
+
+      timelineChallengeItems.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'drag-item';
+        div.id = `tl-item-${index}`;
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <span style="font-weight: 800; color: #60a5fa; width: 22px;">#${index + 1}</span>
+            <div>
+              <div style="font-weight: 700; color: #fff;">${item.event}</div>
+              <div style="font-size: 0.78rem; color: #94a3b8;">📅 (Date masquée - Déplace pour classer)</div>
+            </div>
+          </div>
+          <div class="drag-controls">
+            <button class="move-btn" onclick="moveTimelineItem(${index}, -1)" ${index === 0 ? 'disabled' : ''}>▲</button>
+            <button class="move-btn" onclick="moveTimelineItem(${index}, 1)" ${index === timelineChallengeItems.length - 1 ? 'disabled' : ''}>▼</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function moveTimelineItem(index, direction) {
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= timelineChallengeItems.length) return;
+      const temp = timelineChallengeItems[index];
+      timelineChallengeItems[index] = timelineChallengeItems[newIndex];
+      timelineChallengeItems[newIndex] = temp;
+      playBeep(400, 'sine', 0.05);
+      renderTimelineChallenge();
+    }
+
+    function shuffleTimelineItems() {
+      timelineChallengeItems.sort(() => Math.random() - 0.5);
+      renderTimelineChallenge();
+      document.getElementById('timelineFeedback').textContent = '';
+    }
+
+    function checkTimelineOrder() {
+      let isCorrect = true;
+      const elements = document.querySelectorAll('.drag-item');
+
+      for (let i = 0; i < timelineChallengeItems.length; i++) {
+        // Vérifier si chaque élément a bien une date >= à l'élément précédent
+        if (i > 0 && timelineChallengeItems[i].yearNum < timelineChallengeItems[i - 1].yearNum) {
+          isCorrect = false;
+        }
+      }
+
+      const feedback = document.getElementById('timelineFeedback');
+      if (isCorrect) {
+        soundSuccess();
+        triggerConfetti();
+        feedback.innerHTML = `<span style="color: #4ade80;">🎉 Bravo ! Tous les événements sont parfaitement ordonnés !</span>`;
+        // Révéler les vraies dates
+        elements.forEach((el, idx) => {
+          el.classList.add('correct-place');
+          el.classList.remove('wrong-place');
+          const dateNotice = el.querySelector('div div:last-child');
+          if (dateNotice) dateNotice.innerHTML = `📅 <strong>${timelineChallengeItems[idx].date}</strong>`;
+        });
+      } else {
+        soundWrong();
+        feedback.innerHTML = `<span style="color: #f87171;">❌ Ce n'est pas tout à fait l'ordre chronologique. Réessaie avec les flèches !</span>`;
+        elements.forEach((el, idx) => {
+          const prev = idx > 0 ? timelineChallengeItems[idx - 1].yearNum : -Infinity;
+          const curr = timelineChallengeItems[idx].yearNum;
+          if (curr < prev) {
+            el.classList.add('wrong-place');
+            el.classList.remove('correct-place');
+          } else {
+            el.classList.remove('wrong-place');
+          }
+        });
+      }
+    }
+
+    /* =========================================================================
+       SECTION JEU D'ASSOCIATION (MATCH)
+       ========================================================================= */
+    let matchPairs = [];
+    let selectedLeft = null;
+    let selectedRight = null;
+    let matchedCount = 0;
+
+    function initMatchGame() {
+      matchedCount = 0;
+      selectedLeft = null;
+      selectedRight = null;
+      document.getElementById('match-pairs-count').textContent = `0 / 6`;
+
+      // Choisir 6 dates
+      const sample = [...CHRONO_DATA].sort(() => Math.random() - 0.5).slice(0, 6);
+      matchPairs = sample;
+
+      const leftCol = document.getElementById('match-left');
+      const rightCol = document.getElementById('match-right');
+      leftCol.innerHTML = '';
+      rightCol.innerHTML = '';
+
+      const shuffledDates = [...sample].sort(() => Math.random() - 0.5);
+      const shuffledEvents = [...sample].sort(() => Math.random() - 0.5);
+
+      shuffledDates.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'match-card';
+        div.dataset.id = item.date;
+        div.textContent = item.date;
+        div.onclick = () => selectMatch('left', div, item.date);
+        leftCol.appendChild(div);
+      });
+
+      shuffledEvents.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'match-card';
+        div.dataset.id = item.date;
+        div.textContent = item.event;
+        div.onclick = () => selectMatch('right', div, item.date);
+        rightCol.appendChild(div);
+      });
+    }
+
+    function selectMatch(side, el, id) {
+      if (el.classList.contains('matched')) return;
+
+      playBeep(420, 'sine', 0.05);
+
+      if (side === 'left') {
+        document.querySelectorAll('#match-left .match-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedLeft = { el, id };
+      } else {
+        document.querySelectorAll('#match-right .match-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedRight = { el, id };
+      }
+
+      if (selectedLeft && selectedRight) {
+        if (selectedLeft.id === selectedRight.id) {
+          // Bravo paire trouvée
+          soundSuccess();
+          selectedLeft.el.classList.remove('selected');
+          selectedRight.el.classList.remove('selected');
+          selectedLeft.el.classList.add('matched');
+          selectedRight.el.classList.add('matched');
+          selectedLeft.el.innerHTML = `✅ ${selectedLeft.el.textContent}`;
+          selectedRight.el.innerHTML = `✅ ${selectedRight.el.textContent}`;
+          matchedCount++;
+          document.getElementById('match-pairs-count').textContent = `${matchedCount} / ${matchPairs.length}`;
+
+          if (matchedCount === matchPairs.length) {
+            triggerConfetti();
+            soundSuccess();
+          }
+        } else {
+          // Erreur
+          soundWrong();
+          const l = selectedLeft.el;
+          const r = selectedRight.el;
+          l.style.borderColor = '#ef4444';
+          r.style.borderColor = '#ef4444';
+          setTimeout(() => {
+            l.style.borderColor = '';
+            r.style.borderColor = '';
+            l.classList.remove('selected');
+            r.classList.remove('selected');
+          }, 450);
+        }
+        selectedLeft = null;
+        selectedRight = null;
+      }
+    }
+
+    /* =========================================================================
+       SECTION VRAI OU FAUX SPRINT
+       ========================================================================= */
+    const TF_QUESTIONS = [
+      {
+        text: "Le 4 août 1789, l'Assemblée vote l'abolition des droits féodaux et des privilèges.",
+        isTrue: true,
+        exp: "VRAI ! Droits FÉODAUX et non droits fédéraux."
+      },
+      {
+        text: "La fuite de la famille royale et son arrestation à Varennes ont eu lieu en août 1791.",
+        isTrue: false,
+        exp: "FAUX ! C'était en JUIN 1791 (les 20 et 21 juin 1791), pas en août."
+      },
+      {
+        text: "La Première République est proclamée le 21 septembre 1792.",
+        isTrue: true,
+        exp: "VRAI ! Au lendemain de la victoire de Valmy, la Convention proclame la République."
+      },
+      {
+        text: "La constitution instaurant la monarchie constitutionnelle a été votée en septembre 1891.",
+        isTrue: false,
+        exp: "FAUX ! En septembre 1791 (un siècle avant 1891) !"
+      },
+      {
+        text: "Le Tiers-État représentait environ 50% de la population française sous l'Ancien Régime.",
+        isTrue: false,
+        exp: "FAUX ! Le Tiers-État représentait 96% à 98% de la population française."
+      },
+      {
+        text: "La Noblesse et le Clergé étaient appelés ordres privilégiés car ils ne payaient pas les impôts directs royaux.",
+        isTrue: true,
+        exp: "VRAI ! Ils étaient exemptés de la taille royale et possédaient de nombreux privilèges."
+      },
+      {
+        text: "Napoléon est décédé sur le champ de bataille de Waterloo en 1815.",
+        isTrue: false,
+        exp: "FAUX ! Waterloo était une défaite. Il est mort en exil à Sainte-Hélène en 1821."
+      },
+      {
+        text: "Robespierre a été guillotiné en juillet 1794 (9-10 thermidor), marquant la fin de la Terreur.",
+        isTrue: true,
+        exp: "VRAI ! Le 28 juillet 1794, Robespierre est exécuté, mettant fin à la Terreur."
+      },
+      {
+        text: "Le Directoire (1795-1799) a donné le droit de vote à tous les citoyens pauvres.",
+        isTrue: false,
+        exp: "FAUX ! Le Directoire a rétabli le suffrage censitaire pour réserver le vote aux plus riches bourgeois."
+      },
+      {
+        text: "Le Serment du Jeu de paume a eu lieu le 20 juin 1789.",
+        isTrue: true,
+        exp: "VRAI ! Les députés y ont juré de ne pas se séparer avant de donner une constitution à la France."
+      }
+    ];
+
+    let tfIndex = 0;
+    let tfScore = 0;
+    let tfAnswered = false;
+
+    function loadTF() {
+      tfAnswered = false;
+      const current = TF_QUESTIONS[tfIndex];
+      document.getElementById('tf-counter').textContent = `Question ${tfIndex + 1} / ${TF_QUESTIONS.length}`;
+      document.getElementById('tf-score-label').textContent = `Score : ${tfScore} point${tfScore > 1 ? 's' : ''}`;
+      document.getElementById('tf-text').textContent = current.text;
+      
+      const feed = document.getElementById('tf-feedback');
+      feed.style.display = 'none';
+      feed.innerHTML = '';
+
+      document.getElementById('tf-next-btn').style.display = 'none';
+    }
+
+    function answerTF(userChoice) {
+      if (tfAnswered) return;
+      tfAnswered = true;
+
+      const current = TF_QUESTIONS[tfIndex];
+      const feed = document.getElementById('tf-feedback');
+      feed.style.display = 'block';
+
+      if (userChoice === current.isTrue) {
+        tfScore++;
+        soundSuccess();
+        feed.style.background = 'rgba(22, 163, 74, 0.25)';
+        feed.style.border = '1px solid #22c55e';
+        feed.innerHTML = `<span style="color: #4ade80; font-weight: bold;">🎉 Exact !</span> ${current.exp}`;
+      } else {
+        soundWrong();
+        feed.style.background = 'rgba(220, 38, 38, 0.25)';
+        feed.style.border = '1px solid #ef4444';
+        feed.innerHTML = `<span style="color: #f87171; font-weight: bold;">❌ Erreur !</span> ${current.exp}`;
+      }
+
+      document.getElementById('tf-score-label').textContent = `Score : ${tfScore} point${tfScore > 1 ? 's' : ''}`;
+      document.getElementById('tf-next-btn').style.display = 'block';
+    }
+
+    function nextTF() {
+      tfIndex++;
+      if (tfIndex < TF_QUESTIONS.length) {
+        loadTF();
+      } else {
+        triggerConfetti();
+        soundSuccess();
+        document.getElementById('tf-text').innerHTML = `
+          <div style="padding: 1rem 0;">
+            <h3 style="color: #fbbf24; font-size: 1.6rem; margin-bottom: 0.5rem;">Sprint Terminé !</h3>
+            <p style="font-size: 1.2rem;">Score : <strong style="color: #4ade80;">${tfScore} / ${TF_QUESTIONS.length}</strong> (${tfScore * 2}/20)</p>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.5rem;">${tfScore >= 8 ? 'Tu as déjoué tous les pièges du contrôle ! Chapeau ! 🎓' : 'Recommence pour bien mémoriser les dates pièges !'}</p>
+          </div>
+        `;
+        document.getElementById('tf-feedback').style.display = 'none';
+        document.getElementById('tf-next-btn').style.display = 'none';
+        const btns = document.querySelector('.tf-buttons');
+        btns.innerHTML = `<button class="btn-action" style="margin: 0 auto;" onclick="restartTF()">🔄 Rejouer le Sprint</button>`;
+      }
+    }
+
+    function restartTF() {
+      tfIndex = 0;
+      tfScore = 0;
+      const btns = document.querySelector('.tf-buttons');
+      btns.innerHTML = `
+        <button class="tf-btn tf-btn-true" onclick="answerTF(true)">✅ VRAI</button>
+        <button class="tf-btn tf-btn-false" onclick="answerTF(false)">❌ FAUX</button>
+      `;
+      loadTF();
+    }
+
+    // Initialisation
+    window.addEventListener('DOMContentLoaded', () => {
+      buildFlashcardDeck('all');
+    });
+  </script>
 </body>
 </html>
